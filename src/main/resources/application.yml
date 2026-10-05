@@ -1,0 +1,17 @@
+server:
+  port: 8080
+renewal:
+  # Days before the renewal date that policy.renewal.due is published and the notice is sent.
+  # Set in 2021 to match the printing contract. See Confluence TWPOL "Renewals review FY26".
+  notice-days: 21
+pubsub:
+  topics:
+    issued: policy.policy.issued
+    renewal-due: policy.renewal.due
+    cancelled: policy.policy.cancelled
+  subscriptions:
+    profile-updated: customer.profile.updated
+    payment-missed: billing.payment.missed
+clients:
+  rating: dns:///rating-service:9090      # gRPC RatingService.Price, 300 ms deadline
+  notifications: http://notifications-hub/v1
